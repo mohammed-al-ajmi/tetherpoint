@@ -4,6 +4,7 @@ using System.Security.Cryptography;
 using Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class GrappleGun : MonoBehaviour
 {
@@ -49,17 +50,19 @@ public class GrappleGun : MonoBehaviour
         }
         Vector3 grappleDirection = m_Tetherpoint.Value - transform.position;
         // transform.position += Vector3.Normalize(grappleDirection) * 15.0f * Time.deltaTime;
-        m_Rigidbody.AddForce(grappleDirection);
+        m_Rigidbody.AddForce(grappleDirection * 5.0f, ForceMode.Force);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) {
+        // if (Input.GetMouseButtonDown(0)) {
+        if (Input.GetButtonDown("GrapplePull")) {
             FindGrapplePoint();
             IsPulling = true;
         }
-        if (Input.GetMouseButtonUp(0)) {
+        // if (Input.GetMouseButtonUp(0)) {
+        if (Input.GetButtonUp("GrapplePull")) {
             IsPulling = false;
         }
 
