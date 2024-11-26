@@ -17,14 +17,24 @@ public class Minion : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
+
+        if (agent == null)
+        {
+            Debug.LogError("NavMeshAgent missing from Minion prefab!");
+            return;
+        }
+
+        // Set NavMeshAgent properties
         agent.speed = speed;
+        agent.acceleration = 8f; // Quick acceleration for responsive movement
+        agent.angularSpeed = 120f; // Turning speed
     }
 
     void Update()
     {
         if (player == null || !agent.isOnNavMesh) return;
 
-        // Move toward the player
+        // Move toward the player if within the NavMesh
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
         if (distanceToPlayer > attackRange)
         {
@@ -32,7 +42,8 @@ public class Minion : MonoBehaviour
         }
         else
         {
-            agent.SetDestination(transform.position); // Stop moving
+            // Stop moving and attack
+            agent.ResetPath(); // Prevent jittering movement
             AttackPlayer();
         }
     }
@@ -40,13 +51,14 @@ public class Minion : MonoBehaviour
     void AttackPlayer()
     {
         Debug.Log("Minion attacking player!");
-        // Placeholder: Add player health reduction logic
-        // player.GetComponent<PlayerHealth>().TakeDamage(damage);
+        // Placeholder for health reduction logic
+        // Example: player.GetComponent<PlayerHealth>().TakeDamage(damage);
     }
 
     public void TakeDamage(int damageAmount)
     {
         health -= damageAmount;
+
         if (health <= 0)
         {
             Die();
@@ -61,7 +73,7 @@ public class Minion : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        // Ignore collisions with other minions or the Syndicate Leader
+        // Ignore collisions with other minions or Syndicate Leader
         if (collision.gameObject.CompareTag("Minion") || collision.gameObject.CompareTag("SyndicateLeader"))
         {
             Physics.IgnoreCollision(collision.collider, GetComponent<Collider>());
