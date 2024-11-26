@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class CorporateMercenary : MonoBehaviour
 {
-    public int health = 10; // Enemy health
+    public int health = 20; // Adjusted health hierarchy
     public float damage = 10f; // Damage dealt to player
     public float attackRange = 2f; // Range at which the enemy attacks
 
@@ -15,16 +15,13 @@ public class CorporateMercenary : MonoBehaviour
 
     void Start()
     {
-        // Get the player reference
         player = GameObject.FindGameObjectWithTag("Player").transform;
-
-        // Get the NavMeshAgent component
         agent = GetComponent<NavMeshAgent>();
     }
 
     void Update()
     {
-        if (isDead) return;
+        if (isDead || player == null || !agent.isOnNavMesh) return;
 
         // Move toward the player
         if (Vector3.Distance(transform.position, player.position) > attackRange)
@@ -41,8 +38,8 @@ public class CorporateMercenary : MonoBehaviour
 
     void AttackPlayer()
     {
-        Debug.Log("Attacking Player");
-        // Add logic to reduce player's health
+        Debug.Log("Corporate Mercenary is attacking the player!");
+        // Placeholder for dealing damage to the player
         // Example:
         // player.GetComponent<PlayerHealth>().TakeDamage(damage);
     }
@@ -61,7 +58,7 @@ public class CorporateMercenary : MonoBehaviour
     {
         isDead = true;
         agent.isStopped = true;
-        Debug.Log("Enemy died");
+        Debug.Log("Corporate Mercenary has died!");
         Destroy(gameObject, 2f); // Delay for death animation
     }
 }
