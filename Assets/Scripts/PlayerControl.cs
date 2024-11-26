@@ -43,8 +43,8 @@ public class PlayerControl : MonoBehaviour
         var rotation = m_CameraTarget.transform.localEulerAngles;
         // var rotation = m_Neck.transform.localEulerAngles;
 
-        rotation.x -= y_axis * 250.0f * Time.deltaTime;
-        rotation.y += x_axis * 250.0f * Time.deltaTime;
+        rotation.x -= y_axis;
+        rotation.y += x_axis;
         
         m_CameraTarget.transform.localEulerAngles = rotation;
         // m_CameraTarget.transform.localEulerAngles = rotation;
