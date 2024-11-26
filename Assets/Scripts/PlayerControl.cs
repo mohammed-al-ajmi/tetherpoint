@@ -19,6 +19,8 @@ public class PlayerControl : MonoBehaviour
 
     private GameObject m_Arm;
 
+    private float m_SpeedMultiplier = 1.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,13 +40,13 @@ public class PlayerControl : MonoBehaviour
 
     void OnMouseMove(float x_axis, float y_axis)
     {
-        // var rotation = m_CameraTarget.transform.localEulerAngles;
-        var rotation = m_Neck.transform.localEulerAngles;
+        var rotation = m_CameraTarget.transform.localEulerAngles;
+        // var rotation = m_Neck.transform.localEulerAngles;
 
-        rotation.x -= y_axis;
-        rotation.y += x_axis;
+        rotation.x -= y_axis * 250.0f * Time.deltaTime;
+        rotation.y += x_axis * 250.0f * Time.deltaTime;
         
-        m_Neck.transform.localEulerAngles = rotation;
+        m_CameraTarget.transform.localEulerAngles = rotation;
         // m_CameraTarget.transform.localEulerAngles = rotation;
 
         UpdateArm();
@@ -60,7 +62,7 @@ public class PlayerControl : MonoBehaviour
 
     void UpdatePlayerMovement()
     {
-        Vector3 movementVector = new(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
+        Vector3 movementVector = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical")) * m_SpeedMultiplier;
         Vector3 localMove =  1.0f * (Quaternion.Euler(0, m_FPSCamera.transform.eulerAngles.y, 0) * movementVector);
         
         // transform.position += localMove;
@@ -73,8 +75,10 @@ public class PlayerControl : MonoBehaviour
         // }
         movement = localMove;
         // m_Rigidbody.AddForce(localMove, ForceMode.Force);
-        m_Rigidbody.MovePosition(m_Rigidbody.position + localMove * 0.01f) ;
+        m_Rigidbody.MovePosition(m_Rigidbody.position + localMove * 0.01f);
         // lastVelocity = localMove;
+
+        // m_CameraTarget.transform.localPosition += new Vector3(0, Mathf.Sin(((float)Time.frameCount) * 5.0f * m_SpeedMultiplier * Time.deltaTime) * 0.0008f, 0);
 
 
         // TODO: replace this with the new Unity input manager way.
@@ -82,7 +86,18 @@ public class PlayerControl : MonoBehaviour
         
         if (jumpAxis > 0.0f && CheckPlayerGrounded()) {
             Debug.Log(jumpAxis);
-            m_Rigidbody.AddForce(Vector3.up * 8.0f , ForceMode.Impulse);
+            m_Rigidbody.AddForce(Vector3.up * 10.0f , ForceMode.Impulse);
+        }
+
+        float sprintAxis = Input.GetAxis("Sprint");
+
+        if (sprintAxis > 0.0f) {
+            m_SpeedMultiplier = 2.0f;
+            m_FPSCamera.m_Lens.FieldOfView = Mathf.Lerp(m_FPSCamera.m_Lens.FieldOfView, 95.0f, 0.008f);
+        }
+        else {
+            m_SpeedMultiplier = 1.0f;
+            m_FPSCamera.m_Lens.FieldOfView = Mathf.Lerp(m_FPSCamera.m_Lens.FieldOfView, 85.0f, 0.005f);
         }
     }
 
