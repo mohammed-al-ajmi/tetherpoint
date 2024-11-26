@@ -10,6 +10,8 @@ public class Drone : MonoBehaviour
     public float hoverOffset = 2f; // Offset to stay slightly ahead and to the side of the player
     public float attackCooldown = 2f; // Time between attacks
     public GameObject projectilePrefab;
+    public Transform gunEnd; // Empty GameObject for shooting position
+    public float projectileSpeed = 20f; // Speed of the projectile
 
     private Transform player;
     private float lastAttackTime;
@@ -22,6 +24,13 @@ public class Drone : MonoBehaviour
     void Update()
     {
         HoverNearPlayer();
+
+        // Attack the player
+        if (Time.time - lastAttackTime > attackCooldown)
+        {
+            AttackPlayer();
+            lastAttackTime = Time.time;
+        }
     }
 
     void HoverNearPlayer()
@@ -44,13 +53,19 @@ public class Drone : MonoBehaviour
 
     void AttackPlayer()
     {
-        if (projectilePrefab != null && Time.time - lastAttackTime > attackCooldown)
+        if (projectilePrefab != null && gunEnd != null)
         {
             // Create a projectile and shoot it toward the player
-            GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+            GameObject projectile = Instantiate(projectilePrefab, gunEnd.position, gunEnd.rotation);
             Rigidbody rb = projectile.GetComponent<Rigidbody>();
-            rb.velocity = (player.position - transform.position).normalized * speed;
-            lastAttackTime = Time.time;
+            if (rb != null)
+            {
+                rb.velocity = (player.position - gunEnd.position).normalized * projectileSpeed;
+            }
+        }
+        else
+        {
+            Debug.LogError("Projectile prefab or gunEnd not assigned in Drone!");
         }
     }
 

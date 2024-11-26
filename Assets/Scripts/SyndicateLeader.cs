@@ -5,12 +5,13 @@ using UnityEngine.AI;
 
 public class SyndicateLeader : MonoBehaviour
 {
-    public int health = 100;
-    public float speed = 3f;
-    public float summonInterval = 10f;
-    public GameObject projectilePrefab;
-    public GameObject minionPrefab;
-    public Transform summonPoint;
+    public int health = 100; // Highest health among enemies
+    public float speed = 3f; // Movement speed
+    public float summonInterval = 10f; // Time between minion summons
+    public GameObject projectilePrefab; // Projectile for ranged attack
+    public GameObject minionPrefab; // Minion to summon
+    public Transform summonPoint; // Point where minions are spawned
+    public Transform gunEnd; // Point where projectiles are fired
 
     private Transform player;
     private float lastSummonTime;
@@ -27,7 +28,7 @@ public class SyndicateLeader : MonoBehaviour
     {
         if (player == null || !agent.isOnNavMesh) return;
 
-        // Move toward the player
+        // Chase the player
         agent.SetDestination(player.position);
 
         // Summon minions periodically
@@ -37,11 +38,8 @@ public class SyndicateLeader : MonoBehaviour
             lastSummonTime = Time.time;
         }
 
-        // Attack with projectiles
-        if (projectilePrefab != null)
-        {
-            AttackPlayer();
-        }
+        // Attack the player with projectiles
+        AttackPlayer();
     }
 
     void SummonMinions()
@@ -50,28 +48,40 @@ public class SyndicateLeader : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             Vector3 randomOffset = Random.insideUnitSphere * 2f;
-            randomOffset.y = 0; // Ensure minions spawn on the ground
+            randomOffset.y = 0; // Keep minions grounded
             Vector3 spawnPosition = summonPoint.position + randomOffset;
 
             if (NavMesh.SamplePosition(spawnPosition, out NavMeshHit hit, 2f, NavMesh.AllAreas))
             {
-                GameObject minion = Instantiate(minionPrefab, hit.position, Quaternion.identity);
-                minion.tag = "Minion"; // Set tag for collision checks
+                Instantiate(minionPrefab, hit.position, Quaternion.identity);
+            }
+            else
+            {
+                Debug.LogWarning("Failed to find a valid spawn position for minion!");
             }
         }
     }
 
     void AttackPlayer()
     {
-        Debug.Log("Syndicate Leader attacking player!");
-        GameObject projectile = Instantiate(projectilePrefab, summonPoint.position, Quaternion.identity);
-        Rigidbody rb = projectile.GetComponent<Rigidbody>();
-        rb.velocity = (player.position - summonPoint.position).normalized * 10f; // Fire toward the player
+        if (projectilePrefab != null && gunEnd != null)
+        {
+            // Fire a projectile every second
+            if (Time.time - lastSummonTime > 1f)
+            {
+                Debug.Log("Syndicate Leader firing at player!");
+                GameObject projectile = Instantiate(projectilePrefab, gunEnd.position, Quaternion.identity);
+                Rigidbody rb = projectile.GetComponent<Rigidbody>();
+                rb.velocity = (player.position - gunEnd.position).normalized * 50f; // Set projectile speed
+                lastSummonTime = Time.time;
+            }
+        }
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damageAmount)
     {
-        health -= damage;
+        health -= damageAmount;
+
         if (health <= 0)
         {
             Die();
@@ -82,14 +92,5 @@ public class SyndicateLeader : MonoBehaviour
     {
         Debug.Log("Syndicate Leader defeated!");
         Destroy(gameObject);
-    }
-
-    void OnCollisionEnter(Collision collision)
-    {
-        // Ignore collisions with minions
-        if (collision.gameObject.CompareTag("Minion"))
-        {
-            Physics.IgnoreCollision(collision.collider, GetComponent<Collider>());
-        }
     }
 }
