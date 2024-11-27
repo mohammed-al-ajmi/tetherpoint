@@ -8176,7 +8176,7 @@ Transform:
   m_GameObject: {fileID: 278121603}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -31.099998, y: 0.3895412, z: -3.3799934}
+  m_LocalPosition: {x: -31.099998, y: 0.39, z: -3.3}
   m_LocalScale: {x: 1.5, y: 0.03, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13732,6 +13732,10 @@ PrefabInstance:
       propertyPath: m_LookAt
       value: 
       objectReference: {fileID: 1478387838}
+    - target: {fileID: 6866212918548481565, guid: 3295ddb392d22422ca814356b3b8c143, type: 3}
+      propertyPath: m_Lens.FieldOfView
+      value: 85.00076
+      objectReference: {fileID: 0}
     - target: {fileID: 8415249763136032327, guid: 3295ddb392d22422ca814356b3b8c143, type: 3}
       propertyPath: m_Name
       value: FPSCamera
@@ -30227,6 +30231,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4000010737657962, guid: aca4c3cf28c5f5a428fb19299881807f, type: 3}
   m_PrefabInstance: {fileID: 1058023802}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1058923580 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5911101449719322411, guid: 692dc399f4e714fb9becba06e36affe5, type: 3}
+  m_PrefabInstance: {fileID: 1549312375}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1058923586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1058923580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f29ebe261a77a8945b9dc3a51cd9bf3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grayscaleMaterial: {fileID: 2100000, guid: 15479b2881c0bd74fb1c0a359c57eb06, type: 2}
 --- !u!1001 &1062816862
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43927,6 +43949,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3158502956735956931, guid: 692dc399f4e714fb9becba06e36affe5, type: 3}
+      propertyPath: MouseSensitivity
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 9100332546626410641, guid: 692dc399f4e714fb9becba06e36affe5, type: 3}
+      propertyPath: field of view
+      value: 85.00076
+      objectReference: {fileID: 0}
+    - target: {fileID: 9100332546626410641, guid: 692dc399f4e714fb9becba06e36affe5, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -43936,7 +43970,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7234996998114927575, guid: 692dc399f4e714fb9becba06e36affe5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1707474067}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5911101449719322411, guid: 692dc399f4e714fb9becba06e36affe5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1058923586}
   m_SourcePrefab: {fileID: 100100000, guid: 692dc399f4e714fb9becba06e36affe5, type: 3}
 --- !u!4 &1549312377 stripped
 Transform:
