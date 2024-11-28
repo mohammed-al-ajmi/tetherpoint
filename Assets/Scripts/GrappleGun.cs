@@ -74,7 +74,7 @@ public class GrappleGun : MonoBehaviour
         }
         Vector3 grappleDirection = m_Tetherpoint.Value - transform.position;
         // transform.position += Vector3.Normalize(grappleDirection) * 15.0f * Time.deltaTime;
-        m_Rigidbody.AddForce(grappleDirection * 0.4f, ForceMode.Impulse);
+        m_Rigidbody.AddForce(grappleDirection * 5.0f, ForceMode.Impulse);
         m_Rigidbody.maxLinearVelocity = 16.0f;
 
         int frame = Time.frameCount;

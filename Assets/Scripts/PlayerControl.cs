@@ -75,7 +75,7 @@ public class PlayerControl : MonoBehaviour
         // }
         movement = localMove;
         // m_Rigidbody.AddForce(localMove, ForceMode.Force);
-        m_Rigidbody.MovePosition(m_Rigidbody.position + localMove * 0.01f);
+        m_Rigidbody.MovePosition(m_Rigidbody.position + localMove * 0.1f);
         // lastVelocity = localMove;
 
         // m_CameraTarget.transform.localPosition += new Vector3(0, Mathf.Sin(((float)Time.frameCount) * 5.0f * m_SpeedMultiplier * Time.deltaTime) * 0.0008f, 0);
