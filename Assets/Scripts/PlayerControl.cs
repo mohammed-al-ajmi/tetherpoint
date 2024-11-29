@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerControl : MonoBehaviour
 {
     public float MouseSensitivity = 1000.0f;
+    public float MoveSpeed = 0.1f;
+    public float JumpForce = 200.0f;
 
     private Camera m_Camera;
     private CharacterController m_Controller;
@@ -45,7 +47,7 @@ public class PlayerControl : MonoBehaviour
 
         rotation.x -= y_axis;
         rotation.y += x_axis;
-        
+
         m_CameraTarget.transform.localEulerAngles = rotation;
         // m_CameraTarget.transform.localEulerAngles = rotation;
 
@@ -63,8 +65,8 @@ public class PlayerControl : MonoBehaviour
     void UpdatePlayerMovement()
     {
         Vector3 movementVector = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical")) * m_SpeedMultiplier;
-        Vector3 localMove =  1.0f * (Quaternion.Euler(0, m_FPSCamera.transform.eulerAngles.y, 0) * movementVector);
-        
+        Vector3 localMove = 1.0f * (Quaternion.Euler(0, m_FPSCamera.transform.eulerAngles.y, 0) * movementVector);
+
         // transform.position += localMove;
         // m_Rigidbody.AddForce(localMove, ForceMode.Impulse);
 
@@ -75,7 +77,7 @@ public class PlayerControl : MonoBehaviour
         // }
         movement = localMove;
         // m_Rigidbody.AddForce(localMove, ForceMode.Force);
-        m_Rigidbody.MovePosition(m_Rigidbody.position + localMove * 0.01f);
+        m_Rigidbody.MovePosition(m_Rigidbody.position + localMove * MoveSpeed);
         // lastVelocity = localMove;
 
         // m_CameraTarget.transform.localPosition += new Vector3(0, Mathf.Sin(((float)Time.frameCount) * 5.0f * m_SpeedMultiplier * Time.deltaTime) * 0.0008f, 0);
@@ -83,19 +85,22 @@ public class PlayerControl : MonoBehaviour
 
         // TODO: replace this with the new Unity input manager way.
         float jumpAxis = Input.GetAxis("Jump");
-        
-        if (jumpAxis > 0.0f && CheckPlayerGrounded()) {
+
+        if (jumpAxis > 0.0f && CheckPlayerGrounded())
+        {
             Debug.Log(jumpAxis);
-            m_Rigidbody.AddForce(Vector3.up * 10.0f , ForceMode.Impulse);
+            m_Rigidbody.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
         }
 
         float sprintAxis = Input.GetAxis("Sprint");
 
-        if (sprintAxis > 0.0f) {
+        if (sprintAxis > 0.0f)
+        {
             m_SpeedMultiplier = 2.0f;
             m_FPSCamera.m_Lens.FieldOfView = Mathf.Lerp(m_FPSCamera.m_Lens.FieldOfView, 95.0f, 0.008f);
         }
-        else {
+        else
+        {
             m_SpeedMultiplier = 1.0f;
             m_FPSCamera.m_Lens.FieldOfView = Mathf.Lerp(m_FPSCamera.m_Lens.FieldOfView, 85.0f, 0.005f);
         }
@@ -119,7 +124,8 @@ public class PlayerControl : MonoBehaviour
 
         // only update our movement when our mouse is locked!
         // if not, when regaining focus we may accidentally process input.
-        if (m_MouseLock.MouseLocked == false) {
+        if (m_MouseLock.MouseLocked == false)
+        {
             return;
         }
 
