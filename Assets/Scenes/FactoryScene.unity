@@ -30244,7 +30244,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1058923580}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f29ebe261a77a8945b9dc3a51cd9bf3d, type: 3}
   m_Name: 
@@ -44115,6 +44115,10 @@ PrefabInstance:
       propertyPath: MouseSensitivity
       value: 1000
       objectReference: {fileID: 0}
+    - target: {fileID: 9100332546626410641, guid: 692dc399f4e714fb9becba06e36affe5, type: 3}
+      propertyPath: field of view
+      value: 85.00076
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -44128,6 +44132,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2670790967404902056, guid: 692dc399f4e714fb9becba06e36affe5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1391480554}
+    - targetCorrespondingSourceObject: {fileID: 5911101449719322411, guid: 692dc399f4e714fb9becba06e36affe5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1058923586}
   m_SourcePrefab: {fileID: 100100000, guid: 692dc399f4e714fb9becba06e36affe5, type: 3}
 --- !u!4 &1549312377 stripped
 Transform:
