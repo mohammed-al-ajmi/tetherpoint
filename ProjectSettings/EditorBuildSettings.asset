@@ -4,6 +4,15 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/FactoryScene.unity
+    guid: 08856e987eca5442cb9cd9d7bdedbec2
+  - enabled: 1
+    path: Assets/Scenes/Floating_Facility.unity
+    guid: 4c4fc01efcbdc41b7ae03af5a4a0f67b
+  - enabled: 1
+    path: Assets/Scenes/GlassGardens.unity
+    guid: 521c7617362f7c141a84a1e39f61e3a0
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 045dc5e3d863f4c56a44c9ee71a30713, type: 2}
