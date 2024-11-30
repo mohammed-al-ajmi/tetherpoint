@@ -10,24 +10,30 @@ public class Outcast : MonoBehaviour
     public float ambushRange = 10f; // Distance within which the Outcast starts charging
     public float idleMoveRadius = 5f; // Radius for idle wandering
     public float idleMoveInterval = 3f; // Time between idle movement
+    public float retreatDistance = 5f; // Distance to retreat after attacking
+    public float chargeCooldown = 2f; // Time before the Outcast can charge again
 
     private Transform player; // Reference to the player
     private Vector3 idleTarget; // Random target for idle movement
     private bool isCharging = false; // Whether the Outcast is currently charging
+    private bool isRetreating = false; // Whether the Outcast is retreating
+    private Rigidbody rb; // Rigidbody component
+    private float lastChargeTime = 0f; // Tracks the last charge time
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        rb = GetComponent<Rigidbody>();
         StartCoroutine(IdleMovement());
     }
 
     void Update()
     {
-        if (isCharging) return;
+        if (isCharging || isRetreating) return;
 
         // Check the distance to the player
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-        if (distanceToPlayer < ambushRange)
+        if (distanceToPlayer < ambushRange && Time.time - lastChargeTime > chargeCooldown)
         {
             StopCoroutine(IdleMovement());
             ChargePlayer();
@@ -47,7 +53,7 @@ public class Outcast : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!isCharging)
+        if (!isCharging && !isRetreating)
         {
             // Smooth movement toward the idle target
             transform.position = Vector3.MoveTowards(transform.position, idleTarget, speed * Time.fixedDeltaTime);
@@ -59,7 +65,29 @@ public class Outcast : MonoBehaviour
         Debug.Log("Outcast charging player!");
         isCharging = true;
         Vector3 chargeDirection = (player.position - transform.position).normalized;
-        GetComponent<Rigidbody>().velocity = chargeDirection * chargeSpeed; // Add force for a fast charge
+        rb.velocity = chargeDirection * chargeSpeed; // Add velocity for a fast charge
+        Invoke(nameof(StartRetreat), 1f); // Start retreating after a short delay
+    }
+
+    void StartRetreat()
+    {
+        if (player == null) return;
+
+        Debug.Log("Outcast retreating!");
+        isCharging = false;
+        isRetreating = true;
+
+        Vector3 retreatDirection = (transform.position - player.position).normalized;
+        idleTarget = transform.position + retreatDirection * retreatDistance;
+        rb.velocity = Vector3.zero; // Stop the charging velocity
+        Invoke(nameof(ResumeIdle), 1f); // Resume idle movement after retreat
+    }
+
+    void ResumeIdle()
+    {
+        Debug.Log("Outcast resuming idle behavior.");
+        isRetreating = false;
+        StartCoroutine(IdleMovement());
     }
 
     public void TakeDamage(int damage)
