@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1161074391694677565}
   - component: {fileID: 6778887983316050860}
   - component: {fileID: 3571979093274466841}
+  - component: {fileID: -8883563203645589465}
   m_Layer: 0
   m_Name: Minion
   m_TagString: Minion
@@ -158,3 +159,19 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &-8883563203645589465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2189861515251326310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d48dd767b57994478bddf0925752903, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 5
+  speed: 4
+  attackRange: 1.5
+  damage: 5
