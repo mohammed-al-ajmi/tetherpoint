@@ -12,9 +12,11 @@ public class SyndicateLeader : MonoBehaviour
     public GameObject minionPrefab; // Minion to summon
     public Transform summonPoint; // Point where minions are spawned
     public Transform gunEnd; // Point where projectiles are fired
+    public float projectileSpeed = 50f; // Speed of projectiles
 
     private Transform player;
     private float lastSummonTime;
+    private float lastShootTime;
     private NavMeshAgent agent;
 
     void Start()
@@ -39,7 +41,11 @@ public class SyndicateLeader : MonoBehaviour
         }
 
         // Attack the player with projectiles
-        AttackPlayer();
+        if (Time.time - lastShootTime > 1f)
+        {
+            AttackPlayer();
+            lastShootTime = Time.time;
+        }
     }
 
     void SummonMinions()
@@ -53,7 +59,8 @@ public class SyndicateLeader : MonoBehaviour
 
             if (NavMesh.SamplePosition(spawnPosition, out NavMeshHit hit, 2f, NavMesh.AllAreas))
             {
-                Instantiate(minionPrefab, hit.position, Quaternion.identity);
+                GameObject minion = Instantiate(minionPrefab, hit.position, Quaternion.identity);
+                minion.GetComponent<NavMeshAgent>().Warp(hit.position); // Ensure valid NavMesh placement
             }
             else
             {
@@ -66,15 +73,16 @@ public class SyndicateLeader : MonoBehaviour
     {
         if (projectilePrefab != null && gunEnd != null)
         {
-            // Fire a projectile every second
-            if (Time.time - lastSummonTime > 1f)
+            GameObject projectile = Instantiate(projectilePrefab, gunEnd.position, Quaternion.identity);
+            Rigidbody rb = projectile.GetComponent<Rigidbody>();
+            if (rb != null)
             {
-                Debug.Log("Syndicate Leader firing at player!");
-                GameObject projectile = Instantiate(projectilePrefab, gunEnd.position, Quaternion.identity);
-                Rigidbody rb = projectile.GetComponent<Rigidbody>();
-                rb.velocity = (player.position - gunEnd.position).normalized * 50f; // Set projectile speed
-                lastSummonTime = Time.time;
+                rb.velocity = (player.position - gunEnd.position).normalized * projectileSpeed;
             }
+        }
+        else
+        {
+            Debug.LogError("ProjectilePrefab or GunEnd not assigned.");
         }
     }
 
