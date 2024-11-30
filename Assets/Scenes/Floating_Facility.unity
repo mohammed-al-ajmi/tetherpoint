@@ -223,6 +223,7 @@ GameObject:
   - component: {fileID: 338951622}
   - component: {fileID: 338951621}
   - component: {fileID: 338951620}
+  - component: {fileID: 338951624}
   m_Layer: 0
   m_Name: sceneManager
   m_TagString: Untagged
@@ -330,6 +331,23 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 338951618}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &338951624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338951618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9961a1d2dea04420b8d89f778a79dbc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetMaterial: {fileID: 2100000, guid: 0fdc1921fbe8f4d9997980ee02894689, type: 2}
+  glowColor: {r: 0, g: 1, b: 0, a: 1}
+  glowSpeed: 0.2
+  maxGlowIntensity: 0.6
+  transparency: 0.3
 --- !u!1 &759565194
 GameObject:
   m_ObjectHideFlags: 0
@@ -1210,6 +1228,22 @@ PrefabInstance:
     - target: {fileID: 3158502956735956931, guid: 692dc399f4e714fb9becba06e36affe5, type: 3}
       propertyPath: MouseSensitivity
       value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 7969938661481944397, guid: 692dc399f4e714fb9becba06e36affe5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.345
+      objectReference: {fileID: 0}
+    - target: {fileID: 7969938661481944397, guid: 692dc399f4e714fb9becba06e36affe5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8.378
+      objectReference: {fileID: 0}
+    - target: {fileID: 7969938661481944397, guid: 692dc399f4e714fb9becba06e36affe5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 28.476
+      objectReference: {fileID: 0}
+    - target: {fileID: 9100332546626410641, guid: 692dc399f4e714fb9becba06e36affe5, type: 3}
+      propertyPath: field of view
+      value: 85.00076
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
