@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/Game%20USS.uss?fileID=7433441132597879392&amp;guid=7c7cd5aeea58c3b47a4a0b554b3f3935&amp;type=3#Game USS" />
+    <ui:VisualElement name="HealthContainer" style="flex-grow: 0; width: 300px; height: 20px; margin-bottom: 0; flex-basis: auto; flex-shrink: 0; translate: -13% 204%; align-self: flex-end;">
+        <ui:VisualElement name="Background" style="flex-grow: 1; background-color: rgb(10, 10, 10); -unity-background-image-tint-color: rgb(0, 0, 0);">
+            <ui:VisualElement name="Foreground" style="flex-grow: 1; background-color: rgb(161, 0, 0); width: 100%; height: 100%;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
