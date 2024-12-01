@@ -30232,24 +30232,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4000010737657962, guid: aca4c3cf28c5f5a428fb19299881807f, type: 3}
   m_PrefabInstance: {fileID: 1058023802}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1058923580 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5911101449719322411, guid: 692dc399f4e714fb9becba06e36affe5, type: 3}
-  m_PrefabInstance: {fileID: 1549312375}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1058923586
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1058923580}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f29ebe261a77a8945b9dc3a51cd9bf3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  grayscaleMaterial: {fileID: 2100000, guid: 15479b2881c0bd74fb1c0a359c57eb06, type: 2}
 --- !u!1001 &1062816862
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43663,6 +43645,7 @@ GameObject:
   - component: {fileID: 1538495557}
   - component: {fileID: 1538495556}
   - component: {fileID: 1538495559}
+  - component: {fileID: 1538495560}
   m_Layer: 0
   m_Name: sceneManager
   m_TagString: Untagged
@@ -43769,6 +43752,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToLoad: Floating_Facility
+  enemyLayer: functionalEnemy
+--- !u!114 &1538495560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1538495554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9961a1d2dea04420b8d89f778a79dbc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetMaterial: {fileID: 2100000, guid: 0fdc1921fbe8f4d9997980ee02894689, type: 2}
+  glowColor: {r: 0, g: 1, b: 0, a: 1}
+  glowSpeed: 0.2
+  maxGlowIntensity: 0.6
+  transparency: 0.3
 --- !u!1001 &1541826984
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44114,6 +44115,10 @@ PrefabInstance:
     - target: {fileID: 3158502956735956931, guid: 692dc399f4e714fb9becba06e36affe5, type: 3}
       propertyPath: MouseSensitivity
       value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 9100332546626410641, guid: 692dc399f4e714fb9becba06e36affe5, type: 3}
+      propertyPath: field of view
+      value: 85.00076
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

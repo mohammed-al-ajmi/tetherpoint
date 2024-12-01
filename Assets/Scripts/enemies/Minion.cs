@@ -24,17 +24,14 @@ public class Minion : MonoBehaviour
             return;
         }
 
-        // Set NavMeshAgent properties
         agent.speed = speed;
-        agent.acceleration = 8f; // Quick acceleration for responsive movement
-        agent.angularSpeed = 120f; // Turning speed
     }
 
     void Update()
     {
         if (player == null || !agent.isOnNavMesh) return;
 
-        // Move toward the player if within the NavMesh
+        // Move toward the player
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
         if (distanceToPlayer > attackRange)
         {
@@ -42,8 +39,7 @@ public class Minion : MonoBehaviour
         }
         else
         {
-            // Stop moving and attack
-            agent.ResetPath(); // Prevent jittering movement
+            agent.ResetPath(); // Stop moving when in range
             AttackPlayer();
         }
     }
@@ -51,7 +47,7 @@ public class Minion : MonoBehaviour
     void AttackPlayer()
     {
         Debug.Log("Minion attacking player!");
-        // Placeholder for health reduction logic
+        // Placeholder for player health reduction
         // Example: player.GetComponent<PlayerHealth>().TakeDamage(damage);
     }
 
@@ -69,14 +65,5 @@ public class Minion : MonoBehaviour
     {
         Debug.Log("Minion destroyed!");
         Destroy(gameObject);
-    }
-
-    void OnCollisionEnter(Collision collision)
-    {
-        // Ignore collisions with other minions or Syndicate Leader
-        if (collision.gameObject.CompareTag("Minion") || collision.gameObject.CompareTag("SyndicateLeader"))
-        {
-            Physics.IgnoreCollision(collision.collider, GetComponent<Collider>());
-        }
     }
 }
