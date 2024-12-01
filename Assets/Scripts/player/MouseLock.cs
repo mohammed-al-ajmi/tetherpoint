@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class MouseLock : MonoBehaviour
 {
     private bool m_MouseLocked = false;
+    public PauseMenuScript pauseMenuScript; // Reference to your pause menu script
 
     public bool MouseLocked {
         get { return m_MouseLocked; }
@@ -19,10 +19,9 @@ public class MouseLock : MonoBehaviour
         } 
     }
 
-    // Start is called before the first frame update
     void Start()
     {
-        
+        LockMouse(); // Optionally lock the mouse at start
     }
 
     public void LockMouse()
@@ -40,15 +39,23 @@ public class MouseLock : MonoBehaviour
         m_MouseLocked = false;
     }
 
-
-    // Update is called once per frame
     void Update()
     {
+        // Check if the game is paused
+        if (pauseMenuScript.IsPaused)
+        {
+            UnlockMouse();
+            return; // Exit early if paused
+        }
+
+        // Lock or unlock mouse based on input
         if (!m_MouseLocked && Input.GetMouseButtonDown(0)) {
             LockMouse();
         }
+        
         if (m_MouseLocked && Input.GetKeyDown(KeyCode.Escape)) {
             UnlockMouse();
+            pauseMenuScript.pauseGame(); // Trigger pause menu when unlocking
         }
     }
 }
