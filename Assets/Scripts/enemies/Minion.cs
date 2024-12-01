@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Minion : MonoBehaviour
+public class Minion : MonoBehaviour, IDamageable
 {
     public int health = 5;
     public float speed = 4f;

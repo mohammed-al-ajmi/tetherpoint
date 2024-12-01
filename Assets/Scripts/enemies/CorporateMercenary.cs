@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class CorporateMercenary : MonoBehaviour
+public class CorporateMercenary : MonoBehaviour, IDamageable
 {
     public int health = 20; // Adjusted health hierarchy
     public float damage = 10f; // Damage dealt to player
