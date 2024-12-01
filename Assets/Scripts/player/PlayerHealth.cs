@@ -18,10 +18,13 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int damageAmount)
     {
-        currentHealth -= damageAmount;
-        Debug.Log($"Player Health: {currentHealth}");
-        playerUI.updateHealthBar(currentHealth);
-
+        if(currentHealth > 0)
+        {
+            currentHealth -= damageAmount;
+            Debug.Log($"Player Health: {currentHealth}");
+            playerUI.UpdateHealthBar(currentHealth);
+        }
+        
         if (currentHealth <= 0)
         {
             Die();
@@ -30,8 +33,7 @@ public class PlayerHealth : MonoBehaviour
 
     void Die()
     {
-        Debug.Log("Player has died!");
-        // Add additional death logic (e.g., respawn or game over)
+        playerUI.DisplayDeathMessage();
     }
 
     public int GetCurrentHealth()

@@ -8,28 +8,36 @@ public class PlayerUI : MonoBehaviour
 {
     public TextMeshProUGUI healthText; // Reference to UI text
     private PlayerHealth playerHealth;
-    [SerializeField] private UIDocument uiDocument;
+    [SerializeField] private UIDocument HealthUI;
+    [SerializeField] private UIDocument deathScreen;
     private VisualElement healthBarForeground;
 
     void Start()
     {
         // Find the player and get its health script
-        playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
+        playerHealth = GetComponent<PlayerHealth>();
         if (playerHealth == null)
         {
             Debug.LogError("PlayerHealth script not found on the Player!");
         }
 
-        // Get the root VisualElement
-        var root = uiDocument.rootVisualElement;
+        // Get the root of health VisualElement
+        var root = HealthUI.rootVisualElement;
 
         // Fetch the health bar foreground
         healthBarForeground = root.Q<VisualElement>("Foreground");
+
+        
+        deathScreen.gameObject.SetActive(false);
     }
 
-    public string updateHealthBar(int currentHealth)
+    public string UpdateHealthBar(int currentHealth)
     {
         healthBarForeground.style.width = new Length(currentHealth, LengthUnit.Percent);
         return "HealthBar UI updated";
-    } 
+    }
+
+    public void DisplayDeathMessage() {
+        deathScreen.gameObject.SetActive(true);
+    }
 }

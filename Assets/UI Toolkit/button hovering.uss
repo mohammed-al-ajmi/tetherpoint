@@ -1,0 +1,4 @@
+.button:hover {
+	background-color: #383838; /* Light red when hovered */
+	transform: scale(1.1); /* Enlarge slightly */
+}

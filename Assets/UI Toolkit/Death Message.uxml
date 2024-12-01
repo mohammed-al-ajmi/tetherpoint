@@ -1,0 +1,5 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="flex-grow: 1;">
+        <ui:Label tabindex="-1" text="You Died" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" style="-unity-font: url(&quot;project://database/Assets/fonts/Lacquer-Regular.ttf?fileID=12800000&amp;guid=e3664af9d1e33ec49beabda4ace31266&amp;type=3#Lacquer-Regular&quot;); align-items: center; align-self: center; justify-content: flex-end; width: 100%; height: 100%; font-size: 200px; -unity-text-align: middle-center; -unity-font-style: italic; -unity-text-outline-color: rgb(255, 255, 255); -unity-text-outline-width: 5px; transition-property: ignored; transition-duration: 0s; transition-timing-function: ease; transition-delay: 0s;" />
+    </ui:VisualElement>
+</ui:UXML>
