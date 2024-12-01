@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Outcast : MonoBehaviour
+public class Outcast : MonoBehaviour, IDamageable
 {
     public int health = 20; // Moderate health level
     public float speed = 5f; // Normal wandering speed
