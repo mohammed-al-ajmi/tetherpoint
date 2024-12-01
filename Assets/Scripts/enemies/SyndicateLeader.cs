@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class SyndicateLeader : MonoBehaviour
+public class SyndicateLeader : MonoBehaviour, IDamageable
 {
     public int health = 100; // Highest health among enemies
     public float speed = 3f; // Movement speed

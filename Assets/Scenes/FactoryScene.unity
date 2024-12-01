@@ -8366,6 +8366,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dcdd2923976c40d1a3794d445fa253b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 10
 --- !u!1001 &285210377
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14742,7 +14743,7 @@ GameObject:
   - component: {fileID: 544947414}
   - component: {fileID: 544947413}
   - component: {fileID: 544947412}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SyndicateLeader
   m_TagString: SyndicateLeader
   m_Icon: {fileID: 0}
@@ -14834,6 +14835,7 @@ MonoBehaviour:
   minionPrefab: {fileID: 2189861515251326310, guid: af94924a54edc5f4786dbd494a8b404f, type: 3}
   summonPoint: {fileID: 900303055}
   gunEnd: {fileID: 653841526}
+  projectileSpeed: 50
 --- !u!136 &544947415
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -24330,7 +24332,7 @@ GameObject:
   - component: {fileID: 860695913}
   - component: {fileID: 860695912}
   - component: {fileID: 860695911}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CorporateMercenary
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44133,9 +44135,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2670790967404902056, guid: 692dc399f4e714fb9becba06e36affe5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1391480554}
-    - targetCorrespondingSourceObject: {fileID: 5911101449719322411, guid: 692dc399f4e714fb9becba06e36affe5, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1058923586}
   m_SourcePrefab: {fileID: 100100000, guid: 692dc399f4e714fb9becba06e36affe5, type: 3}
 --- !u!4 &1549312377 stripped
 Transform:
@@ -45785,7 +45784,7 @@ GameObject:
   - component: {fileID: 1632069735}
   - component: {fileID: 1632069734}
   - component: {fileID: 1632069733}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Drone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59237,7 +59236,7 @@ GameObject:
   - component: {fileID: 2037608149}
   - component: {fileID: 2037608148}
   - component: {fileID: 2037608147}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Outcast
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59326,6 +59325,8 @@ MonoBehaviour:
   ambushRange: 10
   idleMoveRadius: 5
   idleMoveInterval: 3
+  retreatDistance: 5
+  chargeCooldown: 2
 --- !u!135 &2037608150
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -62784,6 +62785,10 @@ PrefabInstance:
     - target: {fileID: 2189861515251326310, guid: af94924a54edc5f4786dbd494a8b404f, type: 3}
       propertyPath: m_Name
       value: Minion
+      objectReference: {fileID: 0}
+    - target: {fileID: 2189861515251326310, guid: af94924a54edc5f4786dbd494a8b404f, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2189861515251326310, guid: af94924a54edc5f4786dbd494a8b404f, type: 3}
       propertyPath: m_TagString

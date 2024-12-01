@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Drone : MonoBehaviour
+public class Drone : MonoBehaviour, IDamageable
 {
     public int health = 5; // Health of the drone
     public float speed = 4f; // Slightly reduced movement speed
