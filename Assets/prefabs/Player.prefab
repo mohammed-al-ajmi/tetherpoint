@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3048408140224069400}
   - component: {fileID: 6604712460323962961}
   - component: {fileID: 1429901737049307985}
+  - component: {fileID: 3154896408569692391}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -75,6 +76,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MouseSensitivity: 5000
+  MoveSpeed: 0.1
+  JumpForce: 200
 --- !u!114 &767627696524440378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -99,6 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4f001a0b01354dd78daae150fcf6c45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GrappleForce: 10
   IsPulling: 0
 --- !u!54 &6604712460323962961
 Rigidbody:
@@ -140,6 +144,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Health: 100
+--- !u!114 &3154896408569692391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2670790967404902056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52b7ca04d61648409bb008905f08d29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthText: {fileID: 0}
+  uiDocument: {fileID: 0}
 --- !u!1 &4413831195127870956
 GameObject:
   m_ObjectHideFlags: 0
@@ -389,7 +407,7 @@ Camera:
     height: 1
   near clip plane: 0.05
   far clip plane: 1000
-  field of view: 85
+  field of view: 85.00076
   orthographic: 0
   orthographic size: 5
   m_Depth: 0

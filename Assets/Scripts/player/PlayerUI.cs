@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UIElements;
 
 public class PlayerUI : MonoBehaviour
 {
     public TextMeshProUGUI healthText; // Reference to UI text
     private PlayerHealth playerHealth;
+    [SerializeField] private UIDocument uiDocument;
+    private VisualElement healthBarForeground;
 
     void Start()
     {
@@ -16,13 +19,17 @@ public class PlayerUI : MonoBehaviour
         {
             Debug.LogError("PlayerHealth script not found on the Player!");
         }
+
+        // Get the root VisualElement
+        var root = uiDocument.rootVisualElement;
+
+        // Fetch the health bar foreground
+        healthBarForeground = root.Q<VisualElement>("Foreground");
     }
 
-    void Update()
+    public string updateHealthBar(int currentHealth)
     {
-        if (playerHealth != null)
-        {
-            healthText.text = $"Health: {playerHealth.GetCurrentHealth()}"; // Update health display
-        }
-    }
+        healthBarForeground.style.width = new Length(currentHealth, LengthUnit.Percent);
+        return "HealthBar UI updated";
+    } 
 }

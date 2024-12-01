@@ -6,16 +6,21 @@ public class PlayerHealth : MonoBehaviour
 {
     public int maxHealth = 100;
     private int currentHealth;
+    private PlayerUI playerUI;
+    float timer = 0;
 
     void Start()
     {
         currentHealth = maxHealth;
+        playerUI = GetComponent<PlayerUI>();
     }
+
 
     public void TakeDamage(int damageAmount)
     {
         currentHealth -= damageAmount;
         Debug.Log($"Player Health: {currentHealth}");
+        playerUI.updateHealthBar(currentHealth);
 
         if (currentHealth <= 0)
         {
