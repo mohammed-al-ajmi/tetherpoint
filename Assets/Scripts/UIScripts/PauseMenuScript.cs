@@ -45,6 +45,11 @@ public class PauseMenuScript : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene(0);
     }
+    public void startGame()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(2);
+    }
 
     public void restart()
     {
