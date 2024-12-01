@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class CustomSceneManager : MonoBehaviour
 {
     [SerializeField] private string sceneToLoad;
-    [SerializeField] private string enemyLayer = "functionalEnemy"; // layer
+    [SerializeField] private string enemyLayer = "Enemy"; // layer
 
     // check if the player has entered the trigger
     private void OnTriggerEnter(Collider other)
