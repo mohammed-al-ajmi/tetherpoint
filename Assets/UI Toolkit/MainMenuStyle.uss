@@ -1,0 +1,48 @@
+#Container {
+    background-color: black;
+}
+
+#GameTitle {
+    align-self: center;
+    font-size: 36px;
+    color: white;
+    text-align: center;
+}
+
+#Start {
+    align-self: center;
+    color: white;
+    border-width: 2px;
+    border-color: white;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 8px;
+    cursor: pointer;
+    transition: transform 0.1s ease-in-out;
+    transition-duration: 0.5s;
+    transition-timing-function: ease;
+}
+
+#Quit {
+    align-self: center;
+    color: white;
+    border-width: 2px;
+    border-color: white;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 8px;
+    cursor: pointer;
+    transition: transform 0.1s ease-in-out;
+    transition-duration: 0.5s;
+    transition-timing-function: ease;
+}
+
+#Start:hover {
+    scale: 1.1 1.1;
+    -unity-background-image-tint-color: rgb(176, 176, 176);
+}
+
+#Quit:hover {
+    scale: 1.1 1.1;
+    -unity-background-image-tint-color: rgb(176, 176, 176);
+}
