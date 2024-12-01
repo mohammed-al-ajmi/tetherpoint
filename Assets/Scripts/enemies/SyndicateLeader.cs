@@ -8,6 +8,7 @@ public class SyndicateLeader : MonoBehaviour, IDamageable
     public int health = 100; // Highest health among enemies
     public float speed = 3f; // Movement speed
     public float summonInterval = 10f; // Time between minion summons
+    public float summonRadius = 15f; // Radius within which minions are summoned
     public GameObject projectilePrefab; // Projectile for ranged attack
     public GameObject minionPrefab; // Minion to summon
     public Transform summonPoint; // Point where minions are spawned
@@ -33,8 +34,9 @@ public class SyndicateLeader : MonoBehaviour, IDamageable
         // Chase the player
         agent.SetDestination(player.position);
 
-        // Summon minions periodically
-        if (Time.time - lastSummonTime > summonInterval)
+        // Summon minions if the player is within summonRadius
+        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+        if (distanceToPlayer <= summonRadius && Time.time - lastSummonTime > summonInterval)
         {
             SummonMinions();
             lastSummonTime = Time.time;
@@ -78,6 +80,7 @@ public class SyndicateLeader : MonoBehaviour, IDamageable
             if (rb != null)
             {
                 rb.velocity = (player.position - gunEnd.position).normalized * projectileSpeed;
+                projectile.GetComponent<EnemyBullet>().damageAmount = 10; // Set damage to the projectile
             }
         }
         else

@@ -6,6 +6,7 @@ public class EnemyBullet : MonoBehaviour
 {
     public float bulletSpeed = 50f;
     public GameObject hitEffectPrefab;
+    public int damageAmount = 10; // Damage this bullet deals
 
     void Start()
     {
@@ -24,10 +25,10 @@ public class EnemyBullet : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
-            if (playerHealth != null)
+            PlayerStats playerStats = collision.gameObject.GetComponent<PlayerStats>();
+            if (playerStats != null)
             {
-                playerHealth.TakeDamage(10); // Reduce player health by 10
+                playerStats.TakeDamage(damageAmount); // Reduce player health
             }
 
             CreateHitEffect(collision);
@@ -35,7 +36,6 @@ public class EnemyBullet : MonoBehaviour
         }
         else
         {
-            CreateHitEffect(collision);
             Destroy(gameObject); // Destroy bullet on other collisions
         }
     }
