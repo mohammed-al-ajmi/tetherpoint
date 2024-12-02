@@ -12,7 +12,9 @@ public class CustomSceneManager : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             // if all enemies are dead, load the scene
-            if (AreAllEnemiesDead())
+
+            // revert allenemies or dead
+            if (true || AreAllEnemiesDead())
             {
                 LoadScene(sceneToLoad);
             }
