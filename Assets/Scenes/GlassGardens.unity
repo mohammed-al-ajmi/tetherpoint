@@ -51477,11 +51477,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3704663321618006410, guid: 87c4f87a750da4227a20a8ad4cd175b7, type: 3}
       propertyPath: m_Lens.FieldOfView
-      value: 85.93793
+      value: 85.00076
       objectReference: {fileID: 0}
     - target: {fileID: 4167346982571258970, guid: 87c4f87a750da4227a20a8ad4cd175b7, type: 3}
       propertyPath: field of view
-      value: 85.93793
+      value: 85.00076
       objectReference: {fileID: 0}
     - target: {fileID: 4642799257148449753, guid: 87c4f87a750da4227a20a8ad4cd175b7, type: 3}
       propertyPath: m_LocalPosition.x
