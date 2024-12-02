@@ -27960,7 +27960,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5c9ccae724384562a7773795935c267, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallThreshold: -10
+  fallThreshold: -20
   pauseMenuScript: {fileID: 338822418}
 --- !u!1 &977370176 stripped
 GameObject:
