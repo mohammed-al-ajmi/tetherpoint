@@ -80,7 +80,13 @@ public class SyndicateLeader : MonoBehaviour, IDamageable
             if (rb != null)
             {
                 rb.velocity = (player.position - gunEnd.position).normalized * projectileSpeed;
-                projectile.GetComponent<EnemyBullet>().damageAmount = 10; // Set damage to the projectile
+            }
+
+            // Set damage for the projectile
+            EnemyBullet bullet = projectile.GetComponent<EnemyBullet>();
+            if (bullet != null)
+            {
+                bullet.damageAmount = 15; // Adjust damage value as needed
             }
         }
         else
@@ -88,6 +94,7 @@ public class SyndicateLeader : MonoBehaviour, IDamageable
             Debug.LogError("ProjectilePrefab or GunEnd not assigned.");
         }
     }
+
 
     public void TakeDamage(int damageAmount)
     {

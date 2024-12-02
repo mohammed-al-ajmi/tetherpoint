@@ -38,11 +38,18 @@ public class CorporateMercenary : MonoBehaviour, IDamageable
 
     void AttackPlayer()
     {
-        Debug.Log("Corporate Mercenary is attacking the player!");
-        // Placeholder for dealing damage to the player
-        // Example:
-        // player.GetComponent<PlayerHealth>().TakeDamage(damage);
+       PlayerStats playerStats = player.GetComponent<PlayerStats>();
+       if (playerStats != null)
+       {
+           playerStats.TakeDamage(damage); // Apply damage to the player
+           Debug.Log($"Corporate Mercenary dealt {damage} damage to the player!");
+       }
+      else
+      {
+           Debug.LogError("PlayerStats component missing on Player!");
+       }
     }
+
 
     public void TakeDamage(int damageAmount)
     {
