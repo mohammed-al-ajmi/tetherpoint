@@ -46,10 +46,18 @@ public class Minion : MonoBehaviour, IDamageable
 
     void AttackPlayer()
     {
-        Debug.Log("Minion attacking player!");
-        // Placeholder for player health reduction
-        // Example: player.GetComponent<PlayerHealth>().TakeDamage(damage);
+       PlayerStats playerStats = player.GetComponent<PlayerStats>();
+       if (playerStats != null)
+       {
+           playerStats.TakeDamage(damage); // Apply damage to the player
+          Debug.Log($"Minion dealt {damage} damage to the player!");
+      }
+      else
+     {
+         Debug.LogError("PlayerStats component missing on Player!");
+     }
     }
+
 
     public void TakeDamage(int damageAmount)
     {
