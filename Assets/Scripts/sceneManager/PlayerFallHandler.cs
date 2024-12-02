@@ -1,24 +1,28 @@
-
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PlayerFallHandler : MonoBehaviour
 {
     public float fallThreshold = -10f;
+    public PauseMenuScript pauseMenuScript; // Reference to PauseMenuScript
 
     void Update()
     {
-        // check if the player has fallen below the threshold
+        // Check if the player has fallen below the threshold
         if (transform.position.y < fallThreshold)
         {
-            ReloadScene();
+            ShowDeathMenu();
         }
     }
 
-    // reload the current scene
-    private void ReloadScene()
+    private void ShowDeathMenu()
     {
-        Scene currentScene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(currentScene.name);
+        if (pauseMenuScript != null && !pauseMenuScript.IsPaused)
+        {
+            pauseMenuScript.showDeathMenu();
+        }
+        else
+        {
+            Debug.LogError("PauseMenuScript reference is missing or already paused!");
+        }
     }
 }
