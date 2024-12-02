@@ -9071,6 +9071,28 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e3953f0e4cae674dacde3d2a3c5c774, type: 3}
+--- !u!114 &338822417 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 62241240024384303, guid: 7e3953f0e4cae674dacde3d2a3c5c774, type: 3}
+  m_PrefabInstance: {fileID: 338822416}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca97ae11257f9274e8f9e1d14ecce824, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &338822418 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1040355308527038032, guid: 7e3953f0e4cae674dacde3d2a3c5c774, type: 3}
+  m_PrefabInstance: {fileID: 338822416}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &339051889
 GameObject:
   m_ObjectHideFlags: 0
@@ -27741,7 +27763,7 @@ MeshCollider:
 --- !u!1 &974927065
 GameObject:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 2670790967404902056, guid: 692dc399f4e714fb9becba06e36affe5, type: 3}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
@@ -51909,6 +51931,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5564388030383677425, guid: 87c4f87a750da4227a20a8ad4cd175b7, type: 3}
+      propertyPath: pauseMenuScript
+      value: 
+      objectReference: {fileID: 338822417}
+    - target: {fileID: 5984386703507053987, guid: 87c4f87a750da4227a20a8ad4cd175b7, type: 3}
+      propertyPath: fallThreshold
+      value: -100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5984386703507053987, guid: 87c4f87a750da4227a20a8ad4cd175b7, type: 3}
+      propertyPath: pauseMenuScript
+      value: 
+      objectReference: {fileID: 338822417}
+    - target: {fileID: 6072976767850305434, guid: 87c4f87a750da4227a20a8ad4cd175b7, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 338822418}
+    - target: {fileID: 6072976767850305434, guid: 87c4f87a750da4227a20a8ad4cd175b7, type: 3}
+      propertyPath: pauseMenuScript
+      value: 
+      objectReference: {fileID: 338822417}
     - target: {fileID: 7101906132722965091, guid: 87c4f87a750da4227a20a8ad4cd175b7, type: 3}
       propertyPath: m_Name
       value: Player
