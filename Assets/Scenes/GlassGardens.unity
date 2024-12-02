@@ -20175,7 +20175,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 2468536466bfe4cfe9a8e7b2cd7e38db, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: e53a086a3a274422a8273378d9437638, type: 2}
   m_BuildHeightMesh: 0
 --- !u!4 &707776793
 Transform:
@@ -27738,11 +27738,24 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 6587013894418451575, guid: ffa56748ab32eb94abdad75551227af6, type: 3}
---- !u!1 &974927065 stripped
+--- !u!1 &974927065
 GameObject:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 2670790967404902056, guid: 692dc399f4e714fb9becba06e36affe5, type: 3}
-  m_PrefabInstance: {fileID: 1081910690}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 974927075}
+  - component: {fileID: 974927073}
+  - component: {fileID: 974927074}
+  m_Layer: 0
+  m_Name: 
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
 --- !u!82 &974927073
 AudioSource:
   m_ObjectHideFlags: 0
@@ -27852,7 +27865,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fallThreshold: -20
-  pauseMenuScript: {fileID: 338822418}
+  pauseMenuScript: {fileID: 0}
+--- !u!4 &974927075
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 974927065}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &977370176 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6404866587023484956, guid: 7961d5d64350968438e53e5349630794, type: 3}
@@ -62402,6 +62430,7 @@ MeshCollider:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 974927075}
   - {fileID: 608139251}
   - {fileID: 385932588}
   - {fileID: 654752902}
