@@ -5,8 +5,7 @@ using UnityEngine;
 public class MouseLock : MonoBehaviour
 {
     private bool m_MouseLocked = false;
-    public PauseMenuScript pauseMenuScript; // Reference to your pause menu script
-
+    public PauseMenuScript pauseMenuScript;
     public bool MouseLocked {
         get { return m_MouseLocked; }
         set { 
@@ -21,7 +20,7 @@ public class MouseLock : MonoBehaviour
 
     void Start()
     {
-        LockMouse(); // Optionally lock the mouse at start
+        LockMouse();
     }
 
     public void LockMouse()
@@ -45,7 +44,7 @@ public class MouseLock : MonoBehaviour
         if (pauseMenuScript.IsPaused)
         {
             UnlockMouse();
-            return; // Exit early if paused
+            return;
         }
 
         // Lock or unlock mouse based on input
@@ -55,7 +54,7 @@ public class MouseLock : MonoBehaviour
         
         if (m_MouseLocked && Input.GetKeyDown(KeyCode.Escape)) {
             UnlockMouse();
-            pauseMenuScript.pauseGame(); // Trigger pause menu when unlocking
+            pauseMenuScript.pauseGame();
         }
     }
 }
