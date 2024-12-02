@@ -8,6 +8,7 @@ public class RobotEnemyAI : MonoBehaviour, IDamageable
     public Transform[] patrolPoints;
     public float chaseRange = 10f;
     public float attackRange = 2f;
+    public float hitRange = 2f;
     public float patrolSpeed = 3f;
     public int attackInterval = 5;
     private float lastAttackTime = 0f;
