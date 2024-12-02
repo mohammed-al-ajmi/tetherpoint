@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2465511546796165194}
   - component: {fileID: 4162195654828304440}
   - component: {fileID: 5410469395939553935}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Outcast
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,6 +128,7 @@ MonoBehaviour:
   idleMoveInterval: 3
   retreatDistance: 5
   chargeCooldown: 2
+  damage: 5
 --- !u!54 &4162195654828304440
 Rigidbody:
   m_ObjectHideFlags: 0
