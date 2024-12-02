@@ -1,23 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
 using UnityEngine;
-using UnityEngine.Experimental.GlobalIllumination;
 
 public class Weapon : MonoBehaviour
 {
     private GameObject m_Arm;
-
     private Light m_Flash;
-
     public int damage = 10;
     private Camera playerCamera;
+    public AudioSource audioSource;
 
-    // Start is called before the first frame update
     void Start()
     {
         m_Arm = GameObject.Find("Arm");
-
         m_Flash = GameObject.Find("MuzzleFlash").GetComponent<Light>();
         m_Flash.enabled = false;
 
@@ -25,11 +20,20 @@ public class Weapon : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         Transform cameraTransform = player.transform.Find("PlayerCamera");
         playerCamera = cameraTransform.GetComponent<Camera>();
+
+        // Ensure audioSource is assigned
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+            if (audioSource == null)
+            {
+                Debug.LogError("AudioSource component missing from weapon!");
+            }
+        }
     }
 
     private float m_Timer = 1.0f;
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -38,9 +42,16 @@ public class Weapon : MonoBehaviour
             m_Timer = 1.0f;
             m_Arm.transform.eulerAngles += new Vector3(0.0f, 25.0f, 0.0f);
 
-            // fire the weapon
+            // Play shooting sound
+            if (audioSource != null && !audioSource.isPlaying)
+            {
+                audioSource.Play();
+            }
+
+            // Fire the weapon
             fire();
         }
+        
         m_Timer -= 15.0f * Time.deltaTime;
         if (m_Timer < 0.0f)
         {
@@ -56,21 +67,17 @@ public class Weapon : MonoBehaviour
             return;
         }
 
-        // raycast from the camera
         Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
         RaycastHit hit;
 
-        // shoot the raycast
         if (Physics.Raycast(ray, out hit))
         {
             Debug.Log("Hit: " + hit.collider.gameObject.name);
 
-            // Check if the object hit has the Enemy layer
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
             {
                 Debug.Log("Enemy hit!");
 
-                // Try to get the IDamageable component and call TakeDamage
                 IDamageable damageable = hit.collider.GetComponent<IDamageable>();
                 if (damageable != null)
                 {
@@ -79,6 +86,4 @@ public class Weapon : MonoBehaviour
             }
         }
     }
-
-
 }
