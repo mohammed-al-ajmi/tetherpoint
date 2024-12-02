@@ -23,5 +23,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Acendant_Tower.unity
     guid: 6313ceea9226d624ab718dfccaf2f94b
+  - enabled: 1
+    path: Assets/Scenes/End Scene.unity
+    guid: 07f1cff5082162b44b402342b5553faf
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 045dc5e3d863f4c56a44c9ee71a30713, type: 2}
