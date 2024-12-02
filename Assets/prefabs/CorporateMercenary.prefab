@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 351704872414487333}
   - component: {fileID: 6495040880763872877}
   - component: {fileID: 6590711915174357713}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CorporateMercenary
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -172,5 +172,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
-  damage: 10
+  damage: 0.5
   attackRange: 2

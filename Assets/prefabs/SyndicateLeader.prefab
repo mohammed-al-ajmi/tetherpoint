@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7002799963573732523}
   - component: {fileID: 5239200705563268508}
   - component: {fileID: 1486436267942749386}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SyndicateLeader
   m_TagString: SyndicateLeader
   m_Icon: {fileID: 0}
@@ -126,7 +126,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   speed: 3
-  summonInterval: 5
+  summonInterval: 7
+  summonRadius: 15
   projectilePrefab: {fileID: 7694674914866057459, guid: f73ecac8a438b8a4f94ab388c0a60f40, type: 3}
   minionPrefab: {fileID: 2189861515251326310, guid: af94924a54edc5f4786dbd494a8b404f, type: 3}
   summonPoint: {fileID: 2095753213375723901}
