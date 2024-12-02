@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Drone : MonoBehaviour, IDamageable
@@ -14,16 +15,33 @@ public class Drone : MonoBehaviour, IDamageable
     public float projectileSpeed = 20f; // Speed of the projectile
 
     private Transform player;
+
+    private GameObject m_DroneBlades;
+    private Light m_DroneLight;
     private float lastAttackTime;
+
+    private bool m_IsAlive = true;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        m_DroneBlades = GameObject.Find("DroneBlades");
+        m_DroneLight = GameObject.Find("DroneLight").GetComponent<Light>();
     }
 
     void Update()
     {
-        HoverNearPlayer();
+        if (!m_IsAlive) {
+            return;
+        }
+
+        if (IsInRange()) {
+            m_DroneLight.color = Color.red;
+            HoverNearPlayer();
+        }
+        else {
+            m_DroneLight.color = Color.yellow;
+        }
 
         // Attack the player
         if (Time.time - lastAttackTime > attackCooldown)
@@ -31,6 +49,15 @@ public class Drone : MonoBehaviour, IDamageable
             AttackPlayer();
             lastAttackTime = Time.time;
         }
+
+        // m_DroneBlades.transform.localEulerAngles += new Vector3(0.0f, 0.0f, 100.0f * Time.deltaTime);
+
+        m_DroneBlades.transform.Rotate(0.0f, 0.0f, 1700.0f * Time.deltaTime);
+    }
+
+    bool IsInRange()
+    {
+        return Vector3.Distance(transform.position, player.position) <= 30.0f;
     }
 
     void HoverNearPlayer()
@@ -45,11 +72,13 @@ public class Drone : MonoBehaviour, IDamageable
         );
 
         // Move toward the target position smoothly
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+        transform.position = Vector3.Lerp(transform.position, targetPosition, 0.5f * Time.deltaTime);
 
         // Look at the player while hovering
-        transform.LookAt(new Vector3(player.position.x, transform.position.y, player.position.z));
+        // transform.LookAt(new Vector3(player.position.x, transform.position.y, player.position.z));
     }
+
+    
 
     void AttackPlayer()
     {
@@ -71,6 +100,7 @@ public class Drone : MonoBehaviour, IDamageable
 
     public void TakeDamage(int damageAmount)
     {
+        Debug.Log("Drone hit!");
         health -= damageAmount;
         if (health <= 0)
         {
@@ -81,6 +111,13 @@ public class Drone : MonoBehaviour, IDamageable
     void Die()
     {
         Debug.Log("Drone destroyed!");
-        Destroy(gameObject);
+        // Destroy(gameObject);
+        Rigidbody rb = GetComponent<Rigidbody>();
+        rb.useGravity = true;
+        rb.isKinematic = false;
+
+        m_IsAlive = false;
+
+        m_DroneLight.enabled = false;
     }
 }

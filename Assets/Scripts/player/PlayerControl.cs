@@ -1,4 +1,6 @@
+using System.Collections;
 using Cinemachine;
+using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -23,6 +25,8 @@ public class PlayerControl : MonoBehaviour
 
     private float m_SpeedMultiplier = 1.0f;
 
+    private AudioSource m_FootstepsEmitter;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +42,11 @@ public class PlayerControl : MonoBehaviour
         m_Rigidbody = GetComponent<Rigidbody>();
 
         m_Rigidbody.isKinematic = false;
+
+        m_FootstepsEmitter = GetComponent<AudioSource>();
+        // m_FootstepsEmitter.loop = true;
+
+        // m_FootstepsEmitter.loop = true;
     }
 
     void OnMouseMove(float x_axis, float y_axis)
@@ -62,6 +71,24 @@ public class PlayerControl : MonoBehaviour
     private Vector3 lastVelocity = Vector3.zero;
     private Vector3 movement = Vector3.zero;
 
+    private bool m_SoundPlaying = false;
+
+
+    private IEnumerator FootstepsSound()
+    {
+        while (Input.GetAxis("Horizontal") != 0.0f || Input.GetAxis("Vertical") != 0.0f && CheckPlayerGrounded()) {
+            if (!m_FootstepsEmitter.isPlaying) {
+                m_FootstepsEmitter.pitch = Random.Range(0.5f, 0.8f) + (m_SpeedMultiplier > 1.0f ? 0.1f : 0.0f);
+                m_FootstepsEmitter.volume = Random.Range(0.1f, 0.3f);
+                m_FootstepsEmitter.Play();
+                Debug.Log("Sound play");
+            }
+
+            yield return new WaitForSeconds(Random.Range(1.0f, 1.15f) + (m_SpeedMultiplier > 1.0f ? 0.0f : 0.3f));
+        }
+    }
+
+
     void UpdatePlayerMovement()
     {
         Vector3 movementVector = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical")) * m_SpeedMultiplier;
@@ -74,10 +101,23 @@ public class PlayerControl : MonoBehaviour
 
         // if (m_Rigidbody.velocity.magnitude > localMove.magnitude) {
         //     additiveVelocity -= lastVelocity;
+
         // }
         movement = localMove;
+
+
+        if ((Input.GetAxis("Horizontal") != 0.0f || Input.GetAxis("Vertical") != 0.0f) && CheckPlayerGrounded()) {
+            StartCoroutine("FootstepsSound");
+            m_SoundPlaying = true;
+        }
+        else if (Input.GetAxis("Horizontal") == 0.0f && Input.GetAxis("Vertical") == 0.0f && !CheckPlayerGrounded()) {
+            StopCoroutine("FootstepsSound");
+            m_FootstepsEmitter.Stop();
+        }
+
+
         // m_Rigidbody.AddForce(localMove, ForceMode.Force);
-        m_Rigidbody.MovePosition(m_Rigidbody.position + localMove * MoveSpeed);
+        m_Rigidbody.MovePosition(m_Rigidbody.position + (localMove * MoveSpeed * 50.0f * Time.deltaTime));
         // lastVelocity = localMove;
 
         // m_CameraTarget.transform.localPosition += new Vector3(0, Mathf.Sin(((float)Time.frameCount) * 5.0f * m_SpeedMultiplier * Time.deltaTime) * 0.0008f, 0);
@@ -89,7 +129,7 @@ public class PlayerControl : MonoBehaviour
         if (jumpAxis > 0.0f && CheckPlayerGrounded())
         {
             Debug.Log(jumpAxis);
-            m_Rigidbody.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
+            m_Rigidbody.AddForce(Vector3.up * JumpForce * 50.0f * Time.deltaTime, ForceMode.Impulse);
         }
 
         float sprintAxis = Input.GetAxis("Sprint");

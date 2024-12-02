@@ -26,6 +26,9 @@ public class GrappleGun : MonoBehaviour
     private int m_FrameStart = 0;
 
 
+    private AudioSource m_ZiplineSound;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +39,8 @@ public class GrappleGun : MonoBehaviour
         m_LineRenderer = m_Hand.GetComponent<LineRenderer>();
         m_Rigidbody = GetComponent<Rigidbody>();
         m_PlayerCamera = GameObject.Find("PlayerCamera").GetComponent<Camera>();
+
+        m_ZiplineSound = m_Hand.GetComponent<AudioSource>();
     }
 
     void SetAllSegmentPositions()
@@ -117,16 +122,24 @@ public class GrappleGun : MonoBehaviour
             Debug.Log("Grapple");
             FindGrapplePoint();
             IsPulling = true;
+            m_ZiplineSound.Play();
+
         }
         // if (Input.GetMouseButtonUp(0)) {
         if (Input.GetButtonUp("GrapplePull"))
         {
+            // m_ZiplineSound.Stop();
             IsPulling = false;
         }
+
 
         if (IsPulling)
         {
             UpdateGrapple();
+
+            if (m_Tetherpoint != null) {
+                m_ZiplineSound.volume = Mathf.Lerp(m_ZiplineSound.volume, 0.5f, 0.15f);
+            }
 
 
 
@@ -136,6 +149,7 @@ public class GrappleGun : MonoBehaviour
             m_ShotTimer = 0.0f;
             m_LineRenderer.enabled = false;
             m_FPSCamera.m_Lens.FieldOfView = Mathf.Lerp(m_FPSCamera.m_Lens.FieldOfView, 85.0f, 0.005f);
+            m_ZiplineSound.volume = Mathf.Lerp(m_ZiplineSound.volume, 0.0f, 0.05f);
         }
     }
 }
