@@ -11,26 +11,18 @@ public class CustomSceneManager : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            // if all enemies are dead, load the scene
-            if (AreAllEnemiesDead())
-            {
-                LoadScene(sceneToLoad);
-            }
-            else
-            {
-                Debug.Log("Not all enemies are dead");
-            }
+                LoadScene(sceneToLoad);    
         }
     }
 
     // check if all enemies are dead
-    private bool AreAllEnemiesDead()
-    {
-        int enemyLayerMask = 1 << LayerMask.NameToLayer(enemyLayer);
-        Collider[] enemies = Physics.OverlapSphere(transform.position, Mathf.Infinity, enemyLayerMask);
+    // private bool AreAllEnemiesDead()
+    // {
+    //     int enemyLayerMask = 1 << LayerMask.NameToLayer(enemyLayer);
+    //     Collider[] enemies = Physics.OverlapSphere(transform.position, Mathf.Infinity, enemyLayerMask);
 
-        return enemies.Length == 0;
-    }
+    //     return enemies.Length == 0;
+    // }
 
     // Load the scene
     private void LoadScene(string sceneName)
