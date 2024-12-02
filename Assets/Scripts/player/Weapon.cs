@@ -43,8 +43,9 @@ public class Weapon : MonoBehaviour
             m_Arm.transform.eulerAngles += new Vector3(0.0f, 25.0f, 0.0f);
 
             // Play shooting sound
-            if (audioSource != null && !audioSource.isPlaying)
+            if (audioSource != null)
             {
+                audioSource.Stop();
                 audioSource.Play();
             }
 
