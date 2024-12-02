@@ -34,6 +34,8 @@ public class FinalEnemyManager : MonoBehaviour
     void LoadNextScene()
     {
         Debug.Log("All target enemies defeated! Loading next scene.");
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         SceneManager.LoadScene(6);
     }
 }
