@@ -7,16 +7,22 @@ public class PlayerStats : MonoBehaviour
 {
     public float m_Health = 100.0f;
     public Image healthBar;
+    public PauseMenuScript pauseMenuScript;
+    public AudioSource audioSource; // Reference to AudioSource
 
-    public PauseMenuScript pauseMenuScript; 
-
-    // Start is called before the first frame update
     void Start()
     {
-        
+        // Ensure audioSource is assigned
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+            if (audioSource == null)
+            {
+                Debug.LogError("AudioSource component missing from player!");
+            }
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.K))
@@ -38,14 +44,19 @@ public class PlayerStats : MonoBehaviour
                 pauseMenuScript.showDeathMenu();
             }
         }     
-        
     }
 
     public void TakeDamage(float damage)
     {
         m_Health -= damage;
         healthBar.fillAmount = m_Health / 100.0f;
-        
+
+        // Play damage sound
+        if (audioSource != null && !audioSource.isPlaying)
+        {
+            audioSource.Play();
+        }
+
         if (m_Health <= 0)
         {
             m_Health = 0;
