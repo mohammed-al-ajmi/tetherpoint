@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 329b43edd4183429e835683c7444cfe5
+=======
+guid: 2468536466bfe4cfe9a8e7b2cd7e38db
+>>>>>>> e07a40f (fixed navmeshes, fixed bullet sounds, fixed wrong player prefabs being used across other maps)
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 23800000
