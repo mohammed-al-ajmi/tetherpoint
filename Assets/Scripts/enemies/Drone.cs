@@ -55,17 +55,23 @@ public class Drone : MonoBehaviour, IDamageable
     {
         if (projectilePrefab != null && gunEnd != null)
         {
-            // Create a projectile and shoot it toward the player
             GameObject projectile = Instantiate(projectilePrefab, gunEnd.position, gunEnd.rotation);
             Rigidbody rb = projectile.GetComponent<Rigidbody>();
             if (rb != null)
             {
                 rb.velocity = (player.position - gunEnd.position).normalized * projectileSpeed;
             }
+
+            // Ensure the projectile has the correct damage
+            EnemyBullet bullet = projectile.GetComponent<EnemyBullet>();
+            if (bullet != null)
+            {
+                bullet.damageAmount = 10; // Adjust damage value as needed
+            }
         }
         else
         {
-            Debug.LogError("Projectile prefab or gunEnd not assigned in Drone!");
+            Debug.LogError("ProjectilePrefab or GunEnd not assigned.");
         }
     }
 

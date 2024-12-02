@@ -29,6 +29,11 @@ public class EnemyBullet : MonoBehaviour
             if (playerStats != null)
             {
                 playerStats.TakeDamage(damageAmount); // Reduce player health
+                Debug.Log($"EnemyBullet dealt {damageAmount} damage to the player!");
+            }
+            else
+            {
+                Debug.LogError("PlayerStats component missing on Player!");
             }
 
             CreateHitEffect(collision);
@@ -39,6 +44,7 @@ public class EnemyBullet : MonoBehaviour
             Destroy(gameObject); // Destroy bullet on other collisions
         }
     }
+
 
     void CreateHitEffect(Collision collision)
     {
